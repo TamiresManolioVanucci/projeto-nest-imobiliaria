@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { InjectRepository } from '@nestjs/typeorm';
 import { Imobiliaria } from '../../domain/entities/imobiliaria.entity';
 import { ImobiliariaRepository } from '../../domain/repositories/imobiliaria.repository';
