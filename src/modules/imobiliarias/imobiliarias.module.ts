@@ -7,6 +7,7 @@ import { ImobiliariaController } from './infrastructure/controllers/imobiliaria.
 import { CreateImobiliariaUseCase } from './application/create-imobiliaria.use-case';
 import { EmailIsUniqueValidator } from 'src/shared/validation/email-is-unique.validator';
 import { ListImobiliariaUseCase } from './application/list-imobiliaria.use-case';
+import { FindImobiliariaUseCase } from './application/find-imobiliaria.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Imobiliaria])],
@@ -19,6 +20,7 @@ import { ListImobiliariaUseCase } from './application/list-imobiliaria.use-case'
     EmailIsUniqueValidator,
     CreateImobiliariaUseCase,
     ListImobiliariaUseCase,
+    FindImobiliariaUseCase,
   ],
   exports: [ImobiliariaRepository, EmailIsUniqueValidator],
 })
