@@ -11,14 +11,14 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ImobiliariaTypeOrmRepository implements ImobiliariaRepository {
-  repository: any;
+
   constructor(
     @InjectRepository(Imobiliaria)
-    private readonly imobiliariaRepository: Repository<Imobiliaria>,
+    private readonly repository: Repository<Imobiliaria>,
   ) {}
 
   async create(imobiliaria: Imobiliaria): Promise<Imobiliaria> {
-    return this.imobiliariaRepository.save(imobiliaria);
+    return this.repository.save(imobiliaria);
   }
 
   async list(): Promise<Imobiliaria[]> {
@@ -30,7 +30,7 @@ export class ImobiliariaTypeOrmRepository implements ImobiliariaRepository {
   }
 
   async findByEmail(email: string): Promise<Imobiliaria | null> {
-    return await this.imobiliariaRepository.findOne({
+    return await this.repository.findOne({
       where: { email },
     });
   }
