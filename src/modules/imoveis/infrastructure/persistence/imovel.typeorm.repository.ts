@@ -12,8 +12,8 @@ export class ImovelTypeOrmRepository implements ImovelRepository {
     private readonly repository: Repository<Imovel>,
   ) {}
 
-  create(imovel: Imovel): Promise<Imovel> {
-    throw new Error('Method not implemented.');
+  async create(imovel: Imovel): Promise<Imovel> {
+    return this.repository.save(imovel);
   }
   findById(id: string): Promise<Imovel | null> {
     throw new Error('Method not implemented.');

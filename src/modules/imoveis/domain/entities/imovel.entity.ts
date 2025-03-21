@@ -5,22 +5,26 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { TipoImovel } from '../../infrastructure/enums/tipo-imovel';
 
 @Entity('imoveis')
 export class Imovel {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  tipo: string;
+  @Column({
+    type: 'enum',
+    enum: TipoImovel,
+  })
+  tipo: TipoImovel;
 
-  @Column()
-  endereço: string;
+  @Column({ nullable: true })
+  endereco: string;
 
-  @Column()
+  @Column({ nullable: true })
   numero: number;
 
-  @Column()
+  @Column({ nullable: true })
   bairro: string;
 
   @Column()
@@ -29,10 +33,10 @@ export class Imovel {
   @Column()
   estado: string;
 
-  @Column()
+  @Column({ nullable: true })
   complemento: string;
 
-  @Column()
+  @Column({ nullable: true })
   valor: number;
 
   @Column()

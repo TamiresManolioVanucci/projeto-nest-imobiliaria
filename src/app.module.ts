@@ -4,10 +4,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ImobiliariasModule } from './modules/imobiliarias/imobiliarias.module';
+import { ImoveisModule } from './modules/imoveis/imoveis.module';
 
 @Module({
   imports: [
     ImobiliariasModule,
+    ImoveisModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
