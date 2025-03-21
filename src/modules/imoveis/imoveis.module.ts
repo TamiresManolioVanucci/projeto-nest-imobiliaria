@@ -8,6 +8,7 @@ import { CreateImovelUseCase } from './application/create-imovel.use-case';
 import { ListImovelUseCase } from './application/list-imovel.use-case';
 import { FindImovelUseCase } from './application/find-imovel.use-case';
 import { UpdateImovelUseCase } from './application/update-imovel.use-case';
+import { DeleteImovelUseCase } from './application/delete-imovel.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Imovel])],
@@ -21,6 +22,7 @@ import { UpdateImovelUseCase } from './application/update-imovel.use-case';
     ListImovelUseCase,
     FindImovelUseCase,
     UpdateImovelUseCase,
+    DeleteImovelUseCase,
   ],
   exports: [ImovelRepository],
 })

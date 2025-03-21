@@ -2,7 +2,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CreateImovelUseCase } from '../../application/create-imovel.use-case';
 import { CreateImovelDTO } from '../dtos/create-imovel.dto';
 import { TipoImovel } from '../enums/tipo-imovel';
@@ -11,6 +19,7 @@ import { ListImovelUseCase } from '../../application/list-imovel.use-case';
 import { FindImovelUseCase } from '../../application/find-imovel.use-case';
 import { UpdateImovelDTO } from '../dtos/update-imovel.dto';
 import { UpdateImovelUseCase } from '../../application/update-imovel.use-case';
+import { DeleteImovelUseCase } from '../../application/delete-imovel.use-case';
 
 @Controller('imoveis')
 export class ImovelController {
@@ -19,6 +28,7 @@ export class ImovelController {
     private readonly listImovelUseCase: ListImovelUseCase,
     private readonly findImovelUseCase: FindImovelUseCase,
     private readonly updateImovelUseCase: UpdateImovelUseCase,
+    private readonly deleteImovelUseCase: DeleteImovelUseCase,
   ) {}
 
   @Post()
@@ -68,6 +78,16 @@ export class ImovelController {
     return {
       message: 'Imovel atualizado',
       user: new ListImovelDTO(imovelUpdated.id, imovelUpdated.tipo),
+    };
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    const imovelDeleted = await this.deleteImovelUseCase.execute(id);
+
+    return {
+      message: 'Imovel deletado',
+      imovel: new ListImovelDTO(imovelDeleted.id, imovelDeleted.tipo),
     };
   }
 }

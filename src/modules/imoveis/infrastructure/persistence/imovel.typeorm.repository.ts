@@ -24,7 +24,7 @@ export class ImovelTypeOrmRepository implements ImovelRepository {
   async update(imovel: Imovel): Promise<Imovel> {
     return await this.repository.save(imovel);
   }
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }
