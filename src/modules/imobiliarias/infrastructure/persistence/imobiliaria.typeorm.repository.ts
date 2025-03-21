@@ -20,7 +20,7 @@ export class ImobiliariaTypeOrmRepository implements ImobiliariaRepository {
   }
 
   async findById(id: string): Promise<Imobiliaria | null> {
-    return await this.repository.findOne({ where: { id } }); 
+    return await this.repository.findOne({ where: { id } });
   }
 
   async findByEmail(email: string): Promise<Imobiliaria | null> {
@@ -29,8 +29,8 @@ export class ImobiliariaTypeOrmRepository implements ImobiliariaRepository {
     });
   }
 
-  update(id: string, imobiliaria: Imobiliaria): Promise<Imobiliaria> {
-    throw new Error('Method not implemented.');
+  async update(imobiliaria: Imobiliaria): Promise<Imobiliaria> {
+    return await this.repository.save(imobiliaria);
   }
 
   delete(id: string): Promise<void> {
