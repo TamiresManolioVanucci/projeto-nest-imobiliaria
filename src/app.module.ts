@@ -3,9 +3,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ImobiliariasModule } from './modules/imobiliarias/imobiliarias.module';
 
 @Module({
   imports: [
+    ImobiliariasModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -16,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [],
+      autoLoadEntities: true,
       synchronize: process.env.TYPEORM_SYNC === 'true',
       logging: process.env.TYPEORM_LOGGING === 'true',
     }),

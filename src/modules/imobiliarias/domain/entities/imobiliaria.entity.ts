@@ -21,7 +21,7 @@ export class Imobiliaria {
   cnpj: string;
 
   @Column()
-  endereço: string;
+  endereco: string;
 
   @Column()
   numero: number;
@@ -35,7 +35,7 @@ export class Imobiliaria {
   @Column()
   estado: string;
 
-  @Column()
+  @Column({ nullable: true })
   complemento: string;
 
   @Column()

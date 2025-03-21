@@ -1,10 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Imobiliaria } from './domain/entities/imobiliaria.entity';
 import { ImobiliariaTypeOrmRepository } from './infrastructure/persistence/imobiliaria.typeorm.repository';
 import { ImobiliariaRepository } from './domain/repositories/imobiliaria.repository';
 import { ImobiliariaController } from './infrastructure/controllers/imobiliaria.controller';
+import { CreateImobiliariaUseCase } from './application/create-imobiliaria.use-case';
+import { EmailIsUniqueValidator } from 'src/shared/validation/email-is-unique.validator';
+import { ListImobiliariaUseCase } from './application/list-imobiliaria.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Imobiliaria])],
@@ -14,7 +16,10 @@ import { ImobiliariaController } from './infrastructure/controllers/imobiliaria.
       provide: ImobiliariaRepository,
       useClass: ImobiliariaTypeOrmRepository,
     },
+    EmailIsUniqueValidator,
+    CreateImobiliariaUseCase,
+    ListImobiliariaUseCase,
   ],
-  exports: [ImobiliariaRepository],
+  exports: [ImobiliariaRepository, EmailIsUniqueValidator],
 })
 export class ImobiliariasModule {}

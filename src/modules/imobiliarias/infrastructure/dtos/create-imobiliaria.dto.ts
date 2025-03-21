@@ -48,8 +48,8 @@ export class CreateImobiliariaDTO extends CreateOrUpdateDTO {
 
   @IsString({ message: 'O CRECI deve ser um número válido.' })
   @MinLength(6, { message: 'O CRECI deve ter no mínimo 6 caracteres.' })
-  @Matches(/^[A-Za-z]{2}\d{6}$/, {
-    message: 'O CRECI deve estar no formato correto. Exemplo: SP123456.',
+  @Matches(/^\d{5}-[A-Za-z]{1}$/, {
+    message: 'O CRECI deve estar no formato correto. Exemplo: 14698-J.',
   })
   creci: string;
 }
