@@ -33,7 +33,7 @@ export class ImobiliariaTypeOrmRepository implements ImobiliariaRepository {
     return await this.repository.save(imobiliaria);
   }
 
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }

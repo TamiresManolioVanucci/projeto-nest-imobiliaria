@@ -9,6 +9,7 @@ import { EmailIsUniqueValidator } from 'src/shared/validation/email-is-unique.va
 import { ListImobiliariaUseCase } from './application/list-imobiliaria.use-case';
 import { FindImobiliariaUseCase } from './application/find-imobiliaria.use-case';
 import { UpdateUserUseCase } from './application/update-imobiliaria.use-case';
+import { DeleteImobiliariaUseCase } from './application/delete-imobiliaria.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Imobiliaria])],
@@ -23,6 +24,7 @@ import { UpdateUserUseCase } from './application/update-imobiliaria.use-case';
     ListImobiliariaUseCase,
     FindImobiliariaUseCase,
     UpdateUserUseCase,
+    DeleteImobiliariaUseCase,
   ],
   exports: [ImobiliariaRepository, EmailIsUniqueValidator],
 })

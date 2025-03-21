@@ -2,7 +2,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CreateImobiliariaUseCase } from '../../application/create-imobiliaria.use-case';
 import { CreateImobiliariaDTO } from '../dtos/create-imobiliaria.dto';
 import { ListImobiliariaUseCase } from '../../application/list-imobiliaria.use-case';
@@ -10,6 +18,7 @@ import { ListImobiliariaDTO } from '../dtos/list-imobiliaria.dto';
 import { FindImobiliariaUseCase } from '../../application/find-imobiliaria.use-case';
 import { UpdateImobiliariaDTO } from '../dtos/update-imobiliaria.dto';
 import { UpdateUserUseCase } from '../../application/update-imobiliaria.use-case';
+import { DeleteImobiliariaUseCase } from '../../application/delete-imobiliaria.use-case';
 
 @Controller('imobiliarias')
 export class ImobiliariaController {
@@ -18,6 +27,7 @@ export class ImobiliariaController {
     private readonly listImobiliariaUseCase: ListImobiliariaUseCase,
     private readonly findImobiliariaUseCase: FindImobiliariaUseCase,
     private readonly updateImobiliariaUseCase: UpdateUserUseCase,
+    private readonly deleteImobiliariaUseCase: DeleteImobiliariaUseCase,
   ) {}
 
   @Post()
@@ -76,6 +86,19 @@ export class ImobiliariaController {
       user: new ListImobiliariaDTO(
         imobiliariaUpdated.id,
         imobiliariaUpdated.name,
+      ),
+    };
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    const imobiliariaDeleted = await this.deleteImobiliariaUseCase.execute(id);
+
+    return {
+      message: 'Imobiliaria deletada',
+      imobiliaria: new ListImobiliariaDTO(
+        imobiliariaDeleted.id,
+        imobiliariaDeleted.name,
       ),
     };
   }
