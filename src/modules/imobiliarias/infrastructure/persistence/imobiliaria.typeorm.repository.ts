@@ -9,12 +9,13 @@ import { Injectable } from '@nestjs/common';
 export class ImobiliariaTypeOrmRepository implements ImobiliariaRepository {
   constructor(
     @InjectRepository(Imobiliaria)
-    private readonly repository: Repository<Imobiliaria>,
+    private readonly imobiliariaRepository: Repository<Imobiliaria>,
   ) {}
 
-  create(imobiliaria: Imobiliaria): Promise<Imobiliaria> {
-    throw new Error('Method not implemented.');
+  async create(imobiliaria: Imobiliaria): Promise<Imobiliaria> {
+    return this.imobiliariaRepository.save(imobiliaria);
   }
+
   findById(id: string): Promise<Imobiliaria | null> {
     throw new Error('Method not implemented.');
   }

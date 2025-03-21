@@ -1,5 +1,6 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { CreateImobiliariaUseCase } from '../../application/create-imobiliaria.use-case';
+import { CreateImobiliariaDTO } from '../dtos/create-imobiliaria.dto';
 
 @Controller('imobiliarias')
 export class ImobiliariaController {
@@ -8,5 +9,19 @@ export class ImobiliariaController {
   ) {}
 
   @Post()
-  async create() {}
+  async create(@Body() createImobiliariaDTO: CreateImobiliariaDTO) {
+    const imobiliariaCriada = await this.createImobiliariaUseCase.execute(
+      null,
+      createImobiliariaDTO,
+    );
+
+    return {
+      message: 'Imobiliária criada com sucesso.',
+      imobiliaria: {
+        id: imobiliariaCriada.id,
+        name: imobiliariaCriada.name,
+        email: imobiliariaCriada.email,
+      },
+    };
+  }
 }
