@@ -15,14 +15,14 @@ export class ImovelTypeOrmRepository implements ImovelRepository {
   async create(imovel: Imovel): Promise<Imovel> {
     return this.repository.save(imovel);
   }
-  findById(id: string): Promise<Imovel | null> {
-    throw new Error('Method not implemented.');
+  async list(): Promise<Imovel[]> {
+    return await this.repository.find();
   }
-  findByEmail(email: string): Promise<Imovel | null> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<Imovel | null> {
+    return await this.repository.findOne({ where: { id } });
   }
-  update(id: string, imovel: Imovel): Promise<Imovel> {
-    throw new Error('Method not implemented.');
+  async update(imovel: Imovel): Promise<Imovel> {
+    return await this.repository.save(imovel);
   }
   delete(id: string): Promise<void> {
     throw new Error('Method not implemented.');
