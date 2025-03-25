@@ -5,11 +5,13 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ImobiliariasModule } from './modules/imobiliarias/imobiliarias.module';
 import { ImoveisModule } from './modules/imoveis/imoveis.module';
+import { ImobiliariasImoveisModule } from './modules/imobiliaria_imoveis/imobiliarias_imoveis.module';
 
 @Module({
   imports: [
     ImobiliariasModule,
     ImoveisModule,
+    ImobiliariasImoveisModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
