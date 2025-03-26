@@ -3,6 +3,7 @@ import { Imovel } from 'src/modules/imoveis/domain/entities/imovel.entity';
 import { ImobiliariaImovel } from '../entities/imobiliaria_imovel.entity';
 
 export abstract class ImobiliariaImovelRepository {
+  abstract findById(id: string): Promise<ImobiliariaImovel | null>;
   abstract vincular(
     imobiliaria: Imobiliaria,
     imovel: Imovel,

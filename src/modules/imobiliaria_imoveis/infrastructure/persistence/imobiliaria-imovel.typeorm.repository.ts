@@ -14,13 +14,16 @@ export class ImobiliariaImovelTypeOrmRepository
     @InjectRepository(ImobiliariaImovel)
     private readonly repository: Repository<ImobiliariaImovel>,
   ) {}
+  async findById(id: string): Promise<ImobiliariaImovel | null> {
+    return await this.repository.findOne({ where: { id } });
+  }
   async vincular(
     imobiliaria: Imobiliaria,
     imovel: Imovel,
   ): Promise<ImobiliariaImovel> {
     return await this.repository.save({ imobiliaria, imovel });
   }
-  desvincular(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async desvincular(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }
