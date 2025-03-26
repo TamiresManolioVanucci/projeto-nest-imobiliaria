@@ -1,7 +1,9 @@
+import { ImobiliariaImovel } from 'src/modules/imobiliaria_imoveis/domain/entities/imobiliaria_imovel.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -13,6 +15,12 @@ export class Imobiliaria {
 
   @Column()
   name: string;
+
+  @OneToMany(
+    () => ImobiliariaImovel,
+    (imobiliariaImovel) => imobiliariaImovel.imobiliaria,
+  )
+  imoveis: ImobiliariaImovel[];
 
   @Column({ unique: true })
   email: string;
